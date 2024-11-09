@@ -1,27 +1,59 @@
 import ReactDOM from "react-dom";
 import React from "react";
 
-// usage for element composed with variables and helper method 
 
-function Welcome(props) {
+// using app fragment 
+
+function App() {
+
+    const name11 = "Jhon dd";
+    const name22 = "Ran hh";
+    const name33 = "Yarden dd";
+
+
+    const message = "This is an awesome website";
     return (
-        <h1> welcome {props.user} to this site </h1>
+        <>
+        < Welcome user={name11} message={message} />
+        < Welcome user={name22} message={message} />
+        < Welcome user={name33} message={message} />
+        </>
     );
 }
 
-const name1 = "Jhon Doe";
-const name2 = "Ran Helfer";
-const name3 = "Yarden Doe";
 
-const el = (
-    <div>
-        <Welcome user={name1}/>
-        <Welcome user={name2}/>
-        <Welcome user={name3}/>
-        </div>
-);
+function Welcome(props) {
+    return (
+        <>
+        <h1> welcome {props.user} to this site </h1>
+        <p> {props.message} </p>
+        </>
+    );
+}
 
-ReactDOM.render(el, document.getElementById("root")); 
+// usage for element composed with variables and helper method 
+
+// const name1 = "Jhon Doe";
+// const name2 = "Ran Helfer";
+// const name3 = "Yarden Doe";
+
+// const el = (
+//     <>
+//         <Welcome user={name1}/>
+//         <Welcome user={name2}/>
+//         <Welcome user={name3}/>
+//         </>
+// );
+
+// const e2 = (
+//     <div>
+//         <Welcome user={name1}/>
+//         <Welcome user={name2}/>
+//         <Welcome user={name3}/>
+//         </div>
+// );
+
+ReactDOM.render(<App />, document.getElementById("root")); 
 
 // In this case the message will be displayed but the clock will override it. So to solve this we will use components
 
