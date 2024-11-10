@@ -2,47 +2,75 @@ import React, {useState, useEffect} from "react";
 import ReactDOM from "react-dom/client";
 
 
+function App() {
+    const [clicks, setClicks] = useState(0)
+    const [showMessage, setShowMessage] = useState(false)
+
+    function onClick() {
+        setClicks(clicks + 1)
+        console.log("click")
+        setShowMessage(!showMessage)
+    }
+
+    // let message
+
+    // if (showMessage) {
+    //     message = < Message />
+    // }
+
+    function Message(props) {
+        return <p>Some message {props.message}</p>
+    }
+
+    return <>
+    <p>Clicks: {clicks}</p>
+        <button onClick={onClick}>Click me</button>
+        {showMessage ? <Message message="State is on"/> : <Message message="state is off"/>}
+    </>;
+}
+
+
 // using app fragment 
 
-function App() {
+// function App() {
 
-    const [message, updateVar1]  = useState("Hello world");
+//     const [message, updateVar1]  = useState("Hello world");
 
-    console.log(message);
+//     console.log(message);
 
-    useEffect( () => {
-        setTimeout(() => {
-            updateVar1(Math.random().toString());
-        }, 1500);
+//     useEffect( () => {
+//         setTimeout(() => {
+//             updateVar1(Math.random().toString());
+//         }, 1500);
     
-    }, []); // leave empty [] or set to  updateVar1
+//     }, []); // leave empty [] or set to  updateVar1
     
-    // setTimeout(() => {
-    //     setMessage("Hello Jupiter")
-    // }, 4000);
+//     // setTimeout(() => {
+//     //     setMessage("Hello Jupiter")
+//     // }, 4000);
 
-    const name11 = "Jhon doe";
-    const name22 = "Ran helfer";
-    const name33 = "Yarden dd";
+//     const name11 = "Jhon doe";
+//     const name22 = "Ran helfer";
+//     const name33 = "Yarden dd";
 
-    return (
-        <>
-        < Welcome user={name11} message={message} />
-        < Welcome user={name22} message={message} />
-        < Welcome user={name33} message={message} />
-        </>
-    );
-}
+//     return (
+//         <>
+//         < Welcome user={name11} message={message} />
+//         < Welcome user={name22} message={message} />
+//         < Welcome user={name33} message={message} />
+//         </>
+//     );
+// }
 
 
-function Welcome(props) {
-    return (
-        <>
-        <h1> welcome {props.user} to this site </h1>
-        <p> {props.message} </p>
-        </>
-    );
-}
+// function Welcome(props) {
+//     return (
+//         <>
+//         <h1> welcome {props.user} to this site </h1>
+//         <p> {props.message} </p>
+//         </>
+//     );
+// }
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
