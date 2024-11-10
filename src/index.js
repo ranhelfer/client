@@ -15,7 +15,7 @@ function App() {
             updateVar1(Math.random().toString());
         }, 1500);
     
-    }, [updateVar1]);
+    }, []); // leave empty [] or set to  updateVar1
     
     // setTimeout(() => {
     //     setMessage("Hello Jupiter")
