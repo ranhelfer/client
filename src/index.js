@@ -1,17 +1,30 @@
-import ReactDOM from "react-dom";
-import React from "react";
+import React, {useState, useEffect} from "react";
+import ReactDOM from "react-dom/client";
 
 
 // using app fragment 
 
 function App() {
 
-    const name11 = "Jhon dd";
-    const name22 = "Ran hh";
+    const [message, updateVar1]  = useState("Hello world");
+
+    console.log(message);
+
+    useEffect( () => {
+        setTimeout(() => {
+            updateVar1(Math.random().toString());
+        }, 1500);
+    
+    }, [updateVar1]);
+    
+    // setTimeout(() => {
+    //     setMessage("Hello Jupiter")
+    // }, 4000);
+
+    const name11 = "Jhon doe";
+    const name22 = "Ran helfer";
     const name33 = "Yarden dd";
 
-
-    const message = "This is an awesome website";
     return (
         <>
         < Welcome user={name11} message={message} />
@@ -30,6 +43,13 @@ function Welcome(props) {
         </>
     );
 }
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
 
 // usage for element composed with variables and helper method 
 
@@ -53,7 +73,7 @@ function Welcome(props) {
 //         </div>
 // );
 
-ReactDOM.render(<App />, document.getElementById("root")); 
+//ReactDOM.render(<App />, document.getElementById("root")); 
 
 // In this case the message will be displayed but the clock will override it. So to solve this we will use components
 
