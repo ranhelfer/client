@@ -1,11 +1,51 @@
 import React, {useState, useEffect} from "react"
 import ReactDOM from "react-dom/client"
 
+function App() {
+
+    const [formUsername, setFormUsername] = useState("");
+    const [formPassword, setFormPassword] = useState("");
+
+    function submitData(event) {
+        event.preventDefault()
+        console.log("Hello submitData !");   
+        
+        setFormUsername("");
+        setFormPassword("");
+    }
+
+    return (<>
+    
+        <form onSubmit={submitData}>
+            <input type ="text" 
+                   placeholder="Username" 
+                   onChange={(e) => setFormUsername(e.target.value)}
+                   value={formUsername}
+                   />
+            <input type ="password" 
+                   placeholder="Password"
+                   onChange={(e) => setFormPassword(e.target.value)}
+                   value={formPassword}
+                    />      
+            <button type ="submit">Log in</button> 
+        </form>
+    
+    </>);
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
 function Clock(props) {
     return <p>It's currently {props.time}</p>
 }
 
-function App() {
+function AppList() {
     
     const snippets = [
         {
@@ -44,14 +84,6 @@ function App() {
 function Snippet(props) {
     return <h1>{props.title}</h1>
 }
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
 
 function AppClock() {
     const [time, setTime] = useState(new Date().toLocaleString())
