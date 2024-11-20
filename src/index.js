@@ -1,33 +1,56 @@
-import React, {useState, useEffect} from "react";
-import ReactDOM from "react-dom/client";
+import React, {useState, useEffect} from "react"
+import ReactDOM from "react-dom/client"
 
+function Clock(props) {
+    return <p>It's currently {props.time}</p>
+}
 
 function App() {
-    const [clicks, setClicks] = useState(0)
-    const [showMessage, setShowMessage] = useState(false)
+    const [time, setTime] = useState(new Date().toLocaleString())
 
-    function onClick() {
-        setClicks(clicks + 1)
-        console.log("click")
-        setShowMessage(!showMessage)
-    }
-
-    // let message
-
-    // if (showMessage) {
-    //     message = < Message />
-    // }
-
-    function Message(props) {
-        return <p>Some message {props.message}</p>
-    }
+    useEffect( () => {
+        setInterval( () => {
+            setTime(new Date().toLocaleString())
+        }, 1000)
+    }, []) // [] - run only once 
 
     return <>
-    <p>Clicks: {clicks}</p>
-        <button onClick={onClick}>Click me</button>
-        {showMessage ? <Message message="State is on"/> : <Message message="state is off"/>}
-    </>;
+        <Clock time={time} />
+        </>
 }
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+    // const [clicks, setClicks] = useState(0)
+    // const [showMessage, setShowMessage] = useState(false)
+
+    // function onClick() {
+    //     setClicks(clicks + 1)
+    //     console.log("click")
+    //     setShowMessage(!showMessage)
+    // }
+
+    //  let message
+
+    // // if (showMessage) {
+    // //     message = < Message />
+    // // }
+
+    // function Message(props) {
+    //     return <p>Some message {props.message}</p>
+    // }
+
+    // return <>
+    // <p>Clicks: {clicks}</p>
+    //     <button onClick={onClick}>Click me</button>
+    //     {showMessage ? <Message message="State is on"/> : <Message message="state is off"/>}
+    // </>;
+//}
 
 
 // using app fragment 
@@ -71,13 +94,6 @@ function App() {
 //         </>
 //     );
 // }
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
 // usage for element composed with variables and helper method 
 
