@@ -6,6 +6,54 @@ function Clock(props) {
 }
 
 function App() {
+    
+    const snippets = [
+        {
+            title: "gtt 1",
+        },
+        {
+            title: "sadfsad 2",
+        },
+        {
+            title: "uuuu 3",
+
+        },
+    ];
+
+    function renderSnippets() {
+        const elements =  [
+            <p key="0">Hello world</p>, // need to give a unique key
+            <p key="1">Hi There</p>,
+            <p key="2">Bye...</p>,
+            
+        ];
+
+        return snippets.map((snip, i) => {
+            return <Snippet title={snip.title} key={i}/>
+        })
+    }
+
+    
+    return (
+    <>
+        {renderSnippets()}
+    </>
+    );
+}
+
+function Snippet(props) {
+    return <h1>{props.title}</h1>
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+
+function AppClock() {
     const [time, setTime] = useState(new Date().toLocaleString())
 
     useEffect( () => {
@@ -18,13 +66,6 @@ function App() {
         <Clock time={time} />
         </>
 }
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
     // const [clicks, setClicks] = useState(0)
     // const [showMessage, setShowMessage] = useState(false)
