@@ -2,6 +2,55 @@ import React, {useState, useEffect} from "react"
 import ReactDOM from "react-dom/client"
 
 function App() {
+    const [messageShown, setMessageShown] = useState(false)
+    
+    useEffect(() => {
+        console.log("Specific state update")
+    }, [messageShown])
+
+
+    return (<>
+        
+        <button onClick={() => setMessageShown(!messageShown)}>
+            Toggle Message
+        </button>
+        {messageShown && (
+            <>
+                 <Random /> 
+                <p>Some Message</p>
+            </>
+        )}
+    </>);
+}
+
+function Random() {
+    const [randomNumber, setRandomNumber] = useState(Math.random)
+    
+    useEffect(() => {
+        console.log("Component mount")
+        const intervalId = setInterval(() => {
+            setRandomNumber(Math.random)
+            console.log("updating math random")
+        }, 1000)
+
+        return () => {
+            console.log("umount")
+            clearInterval(intervalId)
+        }
+    }, []);
+
+    return <h1>{randomNumber}</h1>
+
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+);
+
+function AppForms() {
 
     const [formUsername, setFormUsername] = useState("");
     const [formPassword, setFormPassword] = useState("");
@@ -32,13 +81,6 @@ function App() {
     
     </>);
 }
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
 
 
 function Clock(props) {
