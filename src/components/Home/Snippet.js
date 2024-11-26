@@ -1,10 +1,23 @@
 import React from "react"
- 
-function Snippet({snippet}) {
+import axios from "axios";
+
+function Snippet({snippet, getSnippets, editSnippet}) {
+
+    async function deleteSnippet() {
+        await axios.delete(`http://localhost:5001/snippet/${snippet._id}`)
+        await getSnippets()
+    }
+
+    async function editSnippetData() {
+        editSnippet(snippet)
+    }
+
     return <div className="snippet">
         {snippet.title && <h2>{snippet.title}</h2>}
         {snippet.description && <p>{snippet.description}</p>}
         {snippet.code && <pre><code>{snippet.code}</code></pre>}
+        <button onClick={editSnippetData}>Edit</button>
+        <button onClick={deleteSnippet}>Delete</button>
         </div>;
 }
 

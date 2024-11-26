@@ -8,6 +8,7 @@ function Home() {
 
     const [snippets, setSnippets] = useState([]);
     const [editorOpen, setEditorOpen] = useState(false);
+    const [editedSnippetData, setEditedSnippetData] = useState(null);
 
     useEffect( () => {
         getSnippets();
@@ -25,6 +26,11 @@ function Home() {
     
     }
 
+    function editSnippet(snippetData) {
+        setEditedSnippetData(snippetData)
+        console.log("i am edit")
+    }
+
     function render(props) {
 
         let sortedSnippets = [...snippets]; // ... put all elements in an array
@@ -36,7 +42,9 @@ function Home() {
         })
 
         return sortedSnippets.map((snippet, i) => {
-            return <Snippet key={i} snippet={snippet}/>
+            return <Snippet key={i} snippet={snippet} 
+                                    getSnippets={getSnippets} 
+                                    editSnippet={editSnippet}/>
         });
     }
 
