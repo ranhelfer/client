@@ -5,7 +5,6 @@ function SnippetEditor( {getSnippets, setEditorOpen, snippetPreFillData, setSnip
     const [editorTitle, setEditorTitle] = useState("");
     const [editorDescription, setEditorDescription] = useState("");
     const [editorCode, setEditorCode] = useState("");
-    const [editedData, seteditedData] = useState(null);
 
 
     useEffect( () => {
