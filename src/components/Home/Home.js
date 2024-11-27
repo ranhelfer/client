@@ -20,6 +20,7 @@ function Home() {
             const response = await axios.get("http://localhost:5001/snippet");
             console.log(response); // Adjust according to the response structure
             setSnippets(response.data); // Update state if needed
+            setEditedSnippetData(null);
         } catch (error) {
             console.error("Error fetching snippets:", error);
         }
@@ -28,7 +29,7 @@ function Home() {
 
     function editSnippet(snippetData) {
         setEditedSnippetData(snippetData)
-        console.log("i am edit")
+        setEditorOpen(true)
     }
 
     function render(props) {
@@ -51,10 +52,14 @@ function Home() {
     return <div className="home">
         
         {!editorOpen && <button onClick={() => {
+            setEditedSnippetData(null);
             setEditorOpen(true)
         }}>Add Snippet</button>}
 
-        {editorOpen && (<SnippetEditor setEditorOpen={setEditorOpen} getSnippets={getSnippets}/>)}
+        {editorOpen && (<SnippetEditor  getSnippets={getSnippets} 
+                                        setEditorOpen={setEditorOpen} 
+                                        snippetPreFillData={editedSnippetData}
+                                        setSnippetPreFillData={setEditedSnippetData}/>)}
 
         {render()}
         

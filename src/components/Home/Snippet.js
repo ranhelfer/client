@@ -8,15 +8,11 @@ function Snippet({snippet, getSnippets, editSnippet}) {
         await getSnippets()
     }
 
-    async function editSnippetData() {
-        editSnippet(snippet)
-    }
-
     return <div className="snippet">
         {snippet.title && <h2>{snippet.title}</h2>}
         {snippet.description && <p>{snippet.description}</p>}
         {snippet.code && <pre><code>{snippet.code}</code></pre>}
-        <button onClick={editSnippetData}>Edit</button>
+        <button onClick={() =>  editSnippet(snippet)}>Edit</button>
         <button onClick={deleteSnippet}>Delete</button>
         </div>;
 }

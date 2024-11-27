@@ -1,38 +1,58 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-function SnippetEditor(props) {
+function SnippetEditor( {getSnippets, setEditorOpen, snippetPreFillData, setSnippetPreFillData} ) {
     const [editorTitle, setEditorTitle] = useState("");
     const [editorDescription, setEditorDescription] = useState("");
     const [editorCode, setEditorCode] = useState("");
+    const [editedData, seteditedData] = useState(null);
+
+
+    useEffect( () => {
+        console.log("i am here useEffect SnippetEditor")
+        if (snippetPreFillData) {
+            if (snippetPreFillData.title) setEditorTitle(snippetPreFillData.title);
+            if (snippetPreFillData.description) setEditorDescription(snippetPreFillData.description);
+            if (snippetPreFillData.code) setEditorCode(snippetPreFillData.code);
+        }
+    }, [snippetPreFillData]);
 
 
     async function submitForm(e) {
         // By default there is refresh
         e.preventDefault();
-        
-        const snippetData = {
-            title: editorTitle ? editorTitle : undefined,
-            description: editorDescription ? editorDescription : undefined,
-            code: editorCode ? editorCode : undefined
+
+        const snippetData = {};
+        if (editorTitle) snippetData.title = editorTitle;
+        if (editorDescription) snippetData.description = editorDescription;
+        if (editorCode) snippetData.code = editorCode;
+
+        try {
+            console.log("Payload being sent:", snippetData);
+            if (snippetPreFillData == null) {
+                await axios.post("http://localhost:5001/snippet", snippetData);
+            } else {
+                await axios.put(`http://localhost:5001/snippet/${snippetPreFillData._id}`, snippetData)
+            }
+
+            setSnippetPreFillData(null);
+            closeEditor();
+            getSnippets();
+        } catch (error) {
+            console.error("Error while posting snippet:", error.response?.data || error.message);
         }
 
-        await axios.post("http://localhost:5001/snippet", snippetData);
-        
-        closeEditor();
-        
-        props.getSnippets();
+
     }
 
     function closeEditor() {
-        props.setEditorOpen(false);
+        setEditorOpen(false)
         setEditorCode("");
         setEditorDescription("");
         setEditorTitle("");
+       // setSnippetPreFillData(null);
     }
 
-
-    
     return <div className="snippet-editor">
 
         <form onSubmit={submitForm}>
