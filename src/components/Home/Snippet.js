@@ -13,8 +13,8 @@ function Snippet({snippet, getSnippets, editSnippet}) {
         {snippet.title && <h2 className="title">{snippet.title}</h2>}
         {snippet.description && <p className="description">{snippet.description}</p>}
         {snippet.code && <pre className="code"><code>{snippet.code}</code></pre>}
-        <button onClick={() =>  editSnippet(snippet)}>Edit</button>
-        <button onClick={deleteSnippet}>Delete</button>
+        <button className="btn-edit" onClick={() =>  editSnippet(snippet)}>Edit</button>
+        <button className="btn-delete" onClick={deleteSnippet}>Delete</button>
         </div>;
 }
 

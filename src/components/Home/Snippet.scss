@@ -1,3 +1,5 @@
+@import "../../Style/mixin.scss";
+
 .snippet {
     margin: 1.5rem;
     padding: 1rem;
@@ -18,6 +20,22 @@
     font-family: monospace;   
     font-size: 1.3rem; 
     background: var(--dark-color);
+    max-width: 1000px;
+    //word-wrap: break-word; /* Ensures long strings break */
+    overflow-x: auto; /* Allows horizontal scrolling for long lines */
+    //white-space: pre-wrap; /* Preserves formatting but allows wrapping - break the line*/
+}
+
+.btn-delete,
+.btn-edit {
+    // Button styling
+    @include btn();
+    margin-right: 1rem;
+}
+
+.btn-delete {
+   
+    background: #d39494;
 }
 
 }

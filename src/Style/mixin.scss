@@ -1,0 +1,8 @@
+@mixin btn() {
+    padding: 0.5rem;
+    border-radius: 5px;
+    background-color: #e1e1ec;
+    &:hover {
+        box-shadow: var(--box-shadow);
+    }
+}
