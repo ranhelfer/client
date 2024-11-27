@@ -3,7 +3,8 @@ import Router from "./Router";
 import "./Style/index.scss";
 
 function App() {
-    return  <div className="container"> // adding class name so we can reference this from SCSS
+    // adding class name so we can reference this from SCSS
+    return  <div className="container"> 
         <Router />
     </div>
     
