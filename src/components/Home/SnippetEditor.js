@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import "./SnippetEditor.scss"
 
 function SnippetEditor( {getSnippets, setEditorOpen, snippetPreFillData, setSnippetPreFillData} ) {
     const [editorTitle, setEditorTitle] = useState("");
@@ -78,8 +79,8 @@ function SnippetEditor( {getSnippets, setEditorOpen, snippetPreFillData, setSnip
                 }
             />
 
-            <button type="submit">Save snippet</button>
-            <button type="button" onClick={closeEditor}>Cancel</button>
+            <button className="btn-submit" type="submit">Save snippet</button>
+            <button className="btn-cancel" type="button" onClick={closeEditor}>Cancel</button>
         </form>
 
     </div>

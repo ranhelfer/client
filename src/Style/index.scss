@@ -1,4 +1,5 @@
 @import "./variables.scss";
+@import "./mixin.scss";
 
 * {
     margin: 0;
@@ -25,4 +26,20 @@ button {
     color:  unset;
     cursor:  unset;
 
+}
+
+a {
+
+    color: unset;
+    text-decoration: unset;
+    @include link();
+
+}
+
+
+input, textarea {
+    color: unset;
+    background: unset;
+    font: unset;
+    border: unset;
 }

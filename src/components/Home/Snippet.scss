@@ -1,13 +1,14 @@
 @import "../../Style/mixin.scss";
 
 .snippet {
-    margin: 1.5rem;
-    padding: 1rem;
-    border-radius: 10px;
-    background: var(--light-color);
-    box-shadow: var(--box-shadow);
+
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+
+    @include card();
 
 
+ 
 .title,
 .description,
 .code {
@@ -35,7 +36,7 @@
 
 .btn-delete {
    
-    background: #d39494;
+    background: var(--button-delete-color);
 }
 
 }

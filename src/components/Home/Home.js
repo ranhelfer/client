@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import Snippet from "./Snippet";
 import SnippetEditor from "./SnippetEditor";
 
+import "./Home.scss";
 
 function Home() {
 
@@ -51,7 +52,7 @@ function Home() {
 
     return <div className="home">
         
-        {!editorOpen && <button onClick={() => {
+        {!editorOpen && <button className="btn-editor-toggle" onClick={() => {
             setEditedSnippetData(null);
             setEditorOpen(true)
         }}>Add Snippet</button>}

@@ -6,3 +6,25 @@
         box-shadow: var(--box-shadow);
     }
 }
+
+@mixin link() {
+
+    color: var(--text-link-color);
+    font-weight: bold;
+    &:hover {
+        text-decoration: underline;
+    }
+    //padding: 0.5rem;
+    // border-radius: 5px;
+    // background-color: #e1e1ec;
+    // &:hover {
+    //     box-shadow: var(--box-shadow);
+    // }
+}
+
+@mixin card() {
+    padding: 1rem;
+    border-radius: 10px;
+    background: var(--light-color);
+    box-shadow: var(--box-shadow);
+}
