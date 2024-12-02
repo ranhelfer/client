@@ -1,0 +1,24 @@
+@import "../../Style/mixin.scss";
+
+.auth-form {
+
+ @include card(); 
+
+ h2 {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+ }
+
+ .btn-submit {
+    @include btn();
+    background: var(--dark-color);
+    color: #4a5db1;
+    margin-bottom: 1rem;
+ }
+
+ .form {
+    padding: 0rem;
+    box-shadow: unset;
+ }
+
+}

@@ -10,7 +10,6 @@ function Snippet({snippet, getSnippets, editSnippet}) {
     }
 
     return <div className="snippet">
-        <p></p><a href="/">Link</a>
         {snippet.title && <h2 className="title">{snippet.title}</h2>}
         {snippet.description && <p className="description">{snippet.description}</p>}
         {snippet.code && <pre className="code"><code>{snippet.code}</code></pre>}
