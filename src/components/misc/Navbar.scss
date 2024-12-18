@@ -1,3 +1,5 @@
+@import "../../Style/mixin.scss";
+
 .navbar {
     display: flex;
     color: var(--text-light-color);
@@ -7,5 +9,9 @@
         color: unset;
         margin-right: 2rem;
 
+    }
+
+    .btn-logout {
+        @include link();
     }
 }

@@ -1,12 +1,16 @@
-import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react"
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AuthStyle.scss"
+import UserContext from "../../context/UserContext";
 
 function Login() {
     const [formEmail, setFormEmail] = useState("");
     const [formPassword, setFormPassword] = useState("");
     
+    const {getUser} = useContext(UserContext)
+    const navigate = useNavigate();
+
     async function login(e) {
         e.preventDefault()
         console.log("i am trying to register"); 
@@ -17,6 +21,8 @@ function Login() {
         }
         try {
             await axios.post("http://localhost:5001/auth/login", loginData);
+            await getUser()
+            navigate("/");
         } catch  (err) {
             console.log({err}) 
         }
