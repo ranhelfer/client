@@ -1,11 +1,21 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.scss"
 import UserContext from "../../context/UserContext";
+import axios from "axios";
 
 function Navbar() {
 
-    const user = useContext(UserContext)
+    const { user, getUser } = useContext(UserContext)
+    const navigate = useNavigate();
+
+    async function logOut() {
+        console.log("logout done")
+        await axios.get("http://localhost:5001/auth/logout");
+        await getUser();
+        navigate("/login");
+
+    }
 
     return <div className="navbar">
                 <Link to="/">
@@ -13,25 +23,24 @@ function Navbar() {
                     <h1>Snippet Manager</h1>
 
                 </Link>
+                { user === null && 
+                    (<>
 
-                { !user && (<>
-
-                <Link to="/login">
+                        <Link to="/login">
             
-                    Login
+                         Login
 
-                </Link>
-                <Link to="/register">
+                        </Link>
+                        <Link to="/register">
             
-                    Register
+                            Register
                     
-                </Link>
-                </>)
+                        </Link>
+                    </>)
                 } 
-
                 { user && (<>
 
-                    <button className="btn-logout">Logout</button>
+                    <button className="btn-logout" onClick={logOut}>Logout</button>
                     </>)}
            </div>;
                 

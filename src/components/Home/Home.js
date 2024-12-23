@@ -4,6 +4,7 @@ import Snippet from "./Snippet";
 import SnippetEditor from "./SnippetEditor";
 import "./Home.scss";
 import UserContext from "../../context/UserContext";
+import { Link } from "react-router-dom";
 
 function Home() {
 
@@ -14,8 +15,12 @@ function Home() {
     const {user, getUser} = useContext(UserContext);
 
     useEffect( () => {
+        if (!user) {
+            setSnippets([]);
+            return;
+        }
         getSnippets();
-    }, []);
+    }, [user]);
 
 
     async function getSnippets() {
@@ -66,6 +71,13 @@ function Home() {
 
         {render()}
         
+        { user === null && (
+            <div className="no-user-message">
+                <h2>Welcome to snippet manager</h2>
+                <Link to="/register">Register Here</Link>
+                </div>
+        )};
+
         </div>
 }
 

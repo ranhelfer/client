@@ -1,14 +1,17 @@
 import axios from "axios";
-import React, { useState, useEffect } from "react"
-import { Link } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react"
+import { Link, useNavigate } from "react-router-dom";
 import "./AuthStyle.scss"
+import UserContext from "../../context/UserContext";
 
 function Register() {
 
     const [formEmail, setFormEmail] = useState("");
     const [formPassword, setFormPassword] = useState("");
     const [formPasswordVerify, setFormPasswordVerify] = useState("");
-    
+    const { user, getUser } = useContext(UserContext)
+    const navigate = useNavigate();
+
     async function register(e) {
         e.preventDefault()
         console.log("i am trying to register"); 
@@ -20,6 +23,9 @@ function Register() {
         }
 
          await axios.post("http://localhost:5001/auth/", registerData);
+         await getUser();
+         navigate("/")
+
     }
     
     return <div className="auth-form">

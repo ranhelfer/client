@@ -5,8 +5,10 @@ import "./Snippet.scss";
 function Snippet({snippet, getSnippets, editSnippet}) {
 
     async function deleteSnippet() {
-        await axios.delete(`http://localhost:5001/snippet/${snippet._id}`)
-        await getSnippets()
+        if (window.confirm("Delete this snippet?")) {
+            await axios.delete(`http://localhost:5001/snippet/${snippet._id}`)
+            await getSnippets()
+        }
     }
 
     return <div className="snippet">
