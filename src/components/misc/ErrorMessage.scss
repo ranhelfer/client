@@ -1,0 +1,24 @@
+@import "../../Style/mixin.scss";
+.error-msg {
+
+    background: var(--light-gray);
+    display: flex;
+    justify-content: space-between;
+    padding: 0.3rem;
+    border: 1px solid var(--danger-color);
+    border-radius: 5px;
+    align-items: center;
+
+    p {
+        color: var(--danger-color);
+    }
+
+    button {
+        @include btn();
+        padding: 0.1rem 0.4rem;
+        background: var(--danger-color);
+        color: var(--light-gray)
+    }
+
+    
+}

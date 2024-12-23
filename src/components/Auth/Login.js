@@ -3,10 +3,12 @@ import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./AuthStyle.scss"
 import UserContext from "../../context/UserContext";
+import ErrorMessage from "../misc/ErrorMessage";
 
 function Login() {
     const [formEmail, setFormEmail] = useState("");
     const [formPassword, setFormPassword] = useState("");
+    const [errorMessage, setErrorMessage] = useState(null);
     
     const {getUser} = useContext(UserContext)
     const navigate = useNavigate();
@@ -21,11 +23,18 @@ function Login() {
         }
         try {
             await axios.post("http://localhost:5001/auth/login", loginData);
-            await getUser()
-            navigate("/");
         } catch  (err) {
-            console.log({err}) 
+            if (err.response) {
+                if (err.response.data.errorMessage) {
+                    console.log("got error");
+                    setErrorMessage(err.response.data.errorMessage);
+                }
+            }
+            return;
         }
+
+        await getUser()
+        navigate("/");
     }
     
     return <div className="auth-form">
@@ -42,6 +51,12 @@ function Login() {
             }/>
 
             <button className="btn-submit" type="submit">Login</button>
+            
+            { errorMessage && <ErrorMessage 
+                                    message={errorMessage} 
+                                    clear={() => {setErrorMessage(null)}}/>
+            }
+            
             <p>Don't have an account? <Link to="/register">Regsiter Here</Link>
             </p>
         </form>
