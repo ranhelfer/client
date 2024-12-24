@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./SnippetEditor.scss"
+import domain from "../util/domain";
 
 function SnippetEditor( {getSnippets, setEditorOpen, snippetPreFillData, setSnippetPreFillData} ) {
     const [editorTitle, setEditorTitle] = useState("");
@@ -30,9 +31,9 @@ function SnippetEditor( {getSnippets, setEditorOpen, snippetPreFillData, setSnip
         try {
             console.log("Payload being sent:", snippetData);
             if (snippetPreFillData == null) {
-                await axios.post("http://localhost:5001/snippet", snippetData);
+                await axios.post(`${domain}/snippet`, snippetData);
             } else {
-                await axios.put(`http://localhost:5001/snippet/${snippetPreFillData._id}`, snippetData)
+                await axios.put(`${domain}/snippet/${snippetPreFillData._id}`, snippetData)
             }
 
             setSnippetPreFillData(null);

@@ -4,6 +4,7 @@ import axios from "axios";
 import "./AuthStyle.scss"
 import UserContext from "../../context/UserContext";
 import ErrorMessage from "../misc/ErrorMessage";
+import domain from "../util/domain"
 
 function Login() {
     const [formEmail, setFormEmail] = useState("");
@@ -22,7 +23,7 @@ function Login() {
             password: formPassword,
         }
         try {
-            await axios.post("http://localhost:5001/auth/login", loginData);
+            await axios.post(`${domain}/auth/login`, loginData);
         } catch  (err) {
             if (err.response) {
                 if (err.response.data.errorMessage) {

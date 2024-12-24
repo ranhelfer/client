@@ -5,6 +5,7 @@ import SnippetEditor from "./SnippetEditor";
 import "./Home.scss";
 import UserContext from "../../context/UserContext";
 import { Link } from "react-router-dom";
+import domain from "../util/domain";
 
 function Home() {
 
@@ -25,7 +26,7 @@ function Home() {
 
     async function getSnippets() {
         try {
-            const response = await axios.get("http://localhost:5001/snippet");
+            const response = await axios.get(`${domain}/snippet`);
             console.log(response); // Adjust according to the response structure
             setSnippets(response.data); // Update state if needed
             setEditedSnippetData(null);

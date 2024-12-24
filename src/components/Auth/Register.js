@@ -3,6 +3,7 @@ import React, { useState, useEffect, useContext } from "react"
 import { Link, useNavigate } from "react-router-dom";
 import "./AuthStyle.scss"
 import UserContext from "../../context/UserContext";
+import domain from "../util/domain"
 
 function Register() {
 
@@ -22,7 +23,7 @@ function Register() {
             passwordVerify: formPasswordVerify
         }
 
-         await axios.post("http://localhost:5001/auth/", registerData);
+         await axios.post(`${domain}/auth/`, registerData);
          await getUser();
          navigate("/")
 
