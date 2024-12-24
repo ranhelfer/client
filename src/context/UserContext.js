@@ -1,9 +1,13 @@
 import axios from "axios";
 import React, { createContext, useEffect, useState } from "react"
+import domain from "../components/util/domain"
 
 const UserContext = createContext();
 
 function UserContextProvider(props) {
+    
+    console.log("host is " + domain);
+
     const [user, setUser] = useState(undefined);
 
     async function getUser() {
