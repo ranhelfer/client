@@ -42,7 +42,7 @@ function Navbar() {
 
                     <button className="btn-logout" onClick={logOut}>Logout</button>
                     </>)}
-           </div>;
+           </div>
                 
 }
 
