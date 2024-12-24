@@ -76,7 +76,7 @@ function Home() {
                 <h2>Welcome to snippet manager</h2>
                 <Link to="/register">Register Here</Link>
                 </div>
-        )};
+        )}
 
         </div>
 }
