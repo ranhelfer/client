@@ -16,7 +16,7 @@ function Login() {
 
     async function login(e) {
         e.preventDefault()
-        console.log("i am trying to register"); 
+        console.log("i am trying to login"); 
 
         const loginData = {
             email: formEmail,
