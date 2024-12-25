@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.scss"
 import UserContext from "../../context/UserContext";
 import axios from "axios";
+import domain from "../util/domain";
 
 function Navbar() {
 
@@ -11,7 +12,7 @@ function Navbar() {
 
     async function logOut() {
         console.log("logout done")
-        await axios.get("http://localhost:5001/auth/logout");
+        await axios.get(`${domain}/auth/logout`);
         await getUser();
         navigate("/login");
 
